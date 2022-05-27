@@ -3,17 +3,15 @@ import DataTableDiv from './DataTableDiv.vue';
 export default{
     data(){
       return{
-        operator: '',
-        operatorList: []
       }
     },
+    props: {
+      dataProp: Array
+    },
     methods: {
-      insertOperator(e){
-        e.preventDefault()
-        this.operatorList.push({
-          operator: this.operator
-        })
-        console.log(this.operatorList);
+      toggleInsertOverlay(){
+        const overlay = document.getElementById('insertBox')
+        overlay.classList.toggle('setVisible')
       }
     }
     ,components: {
@@ -28,9 +26,9 @@ export default{
       <span>Relação de Operadoras Ativas ANS</span>
       <input type="search" name="" id="searchBox">
     </header>
-    <DataTableDiv v-bind:dataListProp="operatorList"/>
+    <DataTableDiv v-bind:dataListProp="dataProp"/>
     <div id="footer">
-      <button>Inserir</button>
+      <button v-on:click.prevent="toggleInsertOverlay">Inserir</button>
       <button disabled="true">Editar</button>
       <button id="deleteButton" disabled="true">Deletar</button>
     </div>
