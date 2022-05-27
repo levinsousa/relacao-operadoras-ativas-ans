@@ -3,7 +3,17 @@ import DataTableDiv from './DataTableDiv.vue';
 export default{
     data(){
       return{
-        
+        operator: '',
+        operatorList: []
+      }
+    },
+    methods: {
+      insertOperator(e){
+        e.preventDefault()
+        this.operatorList.push({
+          operator: this.operator
+        })
+        console.log(this.operatorList);
       }
     }
     ,components: {
@@ -18,7 +28,7 @@ export default{
       <span>Relação de Operadoras Ativas ANS</span>
       <input type="search" name="" id="searchBox">
     </header>
-    <DataTableDiv/>
+    <DataTableDiv v-bind:dataListProp="operatorList"/>
     <div id="footer">
       <button>Inserir</button>
       <button disabled="true">Editar</button>

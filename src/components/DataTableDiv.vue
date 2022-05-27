@@ -5,6 +5,9 @@ export default{
     return{
 
     }
+  },
+  props: {
+    dataListProp: Array
   }
 }
 </script>
@@ -12,8 +15,8 @@ export default{
 <template>
   <div id="dataTableDiv">
     <table>
-      <tr>
-        <td>lorem ipsum</td>
+      <tr v-for="(value, index) in dataListProp">
+        <td>{{index+'  '+value.operator}}</td>
       </tr>
     </table>
   </div>
