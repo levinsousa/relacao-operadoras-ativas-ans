@@ -6,7 +6,7 @@ export default{
       }
     },
     props: {
-      dataProp: Array
+      dataProp: Object
     },
     methods: {
       toggleInsertOverlay(){
@@ -30,7 +30,7 @@ export default{
     <div id="footer">
       <button v-on:click.prevent="toggleInsertOverlay">Inserir</button>
       <button disabled="true">Editar</button>
-      <button id="deleteButton" disabled="true">Deletar</button>
+      <button id="deleteButton" disabled>Deletar</button>
     </div>
   </div>
 </template>

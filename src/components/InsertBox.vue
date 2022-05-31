@@ -2,21 +2,24 @@
   export default{
     data(){
       return{
-        operatorName: ''
+        dataInput: []
       }
     },
+    props: {
+      dataListProp: Object
+    }
+    ,
     methods: {
       toggleInsertOverlay(){
         const overlay = document.getElementById('insertBox')
         overlay.classList.toggle('setVisible')
       },
       insertOperator(){
-        if(this.operatorName.trim() == '') return
-        this.$emit('insert-operator', {
-          name: this.operatorName
-        })
-        this.toggleInsertOverlay()
-        this.operatorName = ''
+        // this.$emit('insert-operator', {
+          
+        // })
+        // this.toggleInsertOverlay()
+        console.log(this.dataInput)
       }
     }
   }
@@ -25,7 +28,7 @@
 <template>
   <form id="insertBox">
     <button id="quitButton" v-on:click.prevent="toggleInsertOverlay">X</button>
-    <input type="text" class="inputText" v-model="operatorName" placeholder="Nome da Operadora...">
+    <input type="text" class="inputText" v-for="(value) in dataListProp.head" :placeholder="value">
     <input type="submit" id="submitButton" value="Inserir" v-on:click.prevent="insertOperator">
   </form>
 </template>
@@ -41,6 +44,7 @@
     border-radius: 4px;
     background-color: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+    overflow: auto;
     visibility: hidden;
   }
 

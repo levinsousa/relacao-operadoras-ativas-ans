@@ -6,7 +6,30 @@
   export default{
     data(){
       return{
-        operatorList: []
+        operatorList: {
+          head: {
+            registro: "Registro ANS",
+            cnpj: "CNPJ",
+            razaoSocial: "Razão Social",
+            nomeFantasia: "Nome Fantasia",
+            modalidade: "Modalidade",
+            logradouro: "Logradouro",
+            numero: "Número",
+            complemento: "Complemento",
+            bairro: "Bairro",
+            cidade: "Cidade",
+            uf: "UF",
+            cep: "CEP",
+            ddd: "DDD",
+            telefone: "Telefone",
+            fax: "Fax",
+            email: "Endereço eletrônico",
+            representante: "Representante",
+            cargo: "Cargo Representante",
+            dataDeRegistro: "Data Registro ANS"
+          },
+          body: []
+        }
       }
     }
     ,components: {
@@ -16,9 +39,7 @@
     },
     methods: {
       insertOperator(response){
-        this.operatorList.push({
-          operator: response.name
-        })
+        this.operatorList.body.push(response)
       }
     }
   }
@@ -27,7 +48,7 @@
 <template>
   <Header />
   <MainDiv v-bind:dataProp="operatorList"/>
-  <InsertBox v-on:insert-operator="insertOperator"/>
+  <InsertBox v-bind:dataListProp="operatorList" v-on:insert-operator="insertOperator"/>
 </template>
 
 <style>
