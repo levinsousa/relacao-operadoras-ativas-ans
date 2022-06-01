@@ -15,11 +15,9 @@
         overlay.classList.toggle('setVisible')
       },
       insertOperator(){
-        // this.$emit('insert-operator', {
-          
-        // })
-        // this.toggleInsertOverlay()
         console.log(this.dataInput)
+        this.$emit('insert-operator', this.dataInput)
+        this.toggleInsertOverlay()
       }
     }
   }
@@ -28,7 +26,7 @@
 <template>
   <form id="insertBox">
     <button id="quitButton" v-on:click.prevent="toggleInsertOverlay">X</button>
-    <input type="text" class="inputText" v-for="(value) in dataListProp.head" :placeholder="value">
+    <input type="text" class="inputText" v-for="(value,index) in dataListProp.head" :key="index" v-model="dataInput[index]" :placeholder="value">
     <input type="submit" id="submitButton" value="Inserir" v-on:click.prevent="insertOperator">
   </form>
 </template>
